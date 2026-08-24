@@ -1,38 +1,84 @@
-# Sistema Básico de Controle de Drone Tello
+# Tello Drone Controller
 
-Este projeto consiste em um sistema de controle para o drone **Tello DJI**, desenvolvido em **Java**, utilizando conceitos de **Programação Orientada a Objetos (POO)**. O objetivo é gerenciar as funcionalidades e movimentos do drone de maneira organizada, garantindo modularidade, manutenção facilitada e a possibilidade de expansão futura do sistema.
+Java application for controlling a DJI Tello drone over Wi-Fi using an object-oriented architecture that separates device state, movement commands and network communication.
 
-## Funcionalidades Principais
+## Overview
 
-- **Conexão com o drone Tello:** O sistema se conecta à rede Wi-Fi do drone para enviar comandos e monitorar o status.
-- **Controle de movimentos:** Através de comandos do terminal, o usuário pode controlar os movimentos do drone, como decolagem, pouso, rotação, etc.
-- **Monitoramento de status:** O sistema permite verificar o status atual do drone, como nível de bateria, altura, velocidade, entre outros.
-- **Organização modular:** O código foi dividido em classes que representam diferentes responsabilidades, facilitando a leitura e manutenção.
+This project explores direct communication with physical hardware through the Tello command interface. Instead of concentrating all behavior in a single class, the implementation separates the drone model, movement operations, controller logic and network communication into dedicated components.
 
-## Estrutura do Projeto
+It is a compact project, but it demonstrates a different engineering context from my web applications: Java, object-oriented design, UDP-style device communication and command-driven interaction with hardware.
 
-O sistema é dividido em várias classes para garantir uma arquitetura modular e bem organizada:
+## Features
 
-- `Main.java`: Ponto de entrada da aplicação, onde a conexão com o drone é iniciada e o terminal de controle é apresentado ao usuário.
-- `Drone.java`: Classe que representa o drone e seus atributos principais, como status e comandos.
-- `DroneController.java`: Controla a lógica principal de interação com o drone, enviando comandos e recebendo feedback.
-- `DroneMovement.java`: Responsável pelos movimentos do drone, como decolagem, pouso, rotações, etc.
-- `DroneMoves.java`: Enumeração dos movimentos possíveis do drone.
-- `DroneStatus.java`: Gerencia o status atual do drone, como nível de bateria, altitude e outras informações.
-- `ComandoRede.java`: Responsável por gerenciar a comunicação entre o sistema e a rede do drone, enviando comandos e recebendo respostas da rede.
+- Connect to a DJI Tello over its Wi-Fi network
+- Send flight and movement commands
+- Trigger takeoff, landing and rotations
+- Read and expose drone status information
+- Interactive terminal-based control flow
+- Modular object-oriented design
 
-## Requisitos
+## Architecture
 
-- **Java 11+**
-- **IntelliJ IDEA** (ou qualquer IDE de preferência para desenvolvimento Java)
-- **Rede Wi-Fi do drone Tello** (O computador precisa estar conectado à rede Wi-Fi do drone)
+```text
+Terminal / Main
+      |
+      v
+DroneController
+   /       \
+  v         v
+Drone     DroneMovement
+  |           |
+  +-----------+
+      |
+      v
+ComandoRede
+      |
+      v
+DJI Tello
+```
 
-## Como Executar
+## Main components
 
-1. Conecte-se à rede Wi-Fi do drone Tello.
-2. Compile e execute o projeto em sua IDE preferida ou no terminal.
-3. O sistema apresentará um terminal interativo para controlar o drone.
+- `Main.java`: application entry point and command flow
+- `Drone.java`: drone state and core representation
+- `DroneController.java`: coordinates user actions and drone operations
+- `DroneMovement.java`: movement-related behavior
+- `DroneMoves.java`: supported movement definitions
+- `DroneStatus.java`: drone status representation
+- `ComandoRede.java`: network communication with the device
+
+## Stack
+
+- Java
+- Maven
+- Object-oriented programming
+- Network communication
+- DJI Tello command interface
+
+## Requirements
+
+- Java 11 or newer
+- Maven-compatible environment
+- Computer connected to the DJI Tello Wi-Fi network
+
+## Running
 
 ```bash
-javac Main.java
-java Main
+mvn compile
+mvn exec:java
+```
+
+The exact execution command may vary depending on the local Maven configuration. The machine running the application must be connected to the drone network.
+
+## What this project demonstrates
+
+- Object-oriented modeling
+- Separation of responsibilities
+- Hardware communication from Java
+- Command abstraction
+- Device state management
+- Working outside a browser/server application stack
+
+## Status
+
+Learning and portfolio project focused on Java and hardware integration.

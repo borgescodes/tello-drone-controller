@@ -6,7 +6,7 @@ Java application for controlling a DJI Tello drone over Wi-Fi using an object-or
 
 This project explores direct communication with physical hardware through the Tello command interface. Instead of concentrating all behavior in a single class, the implementation separates the drone model, movement operations, controller logic and network communication into dedicated components.
 
-It is a compact project, but it demonstrates a different engineering context from my web applications: Java, object-oriented design, UDP-style device communication and command-driven interaction with hardware.
+It is a compact project, but it demonstrates a different engineering context from my web applications: Java, object-oriented design, network communication and command-driven interaction with hardware.
 
 ## Features
 
@@ -57,18 +57,21 @@ DJI Tello
 
 ## Requirements
 
-- Java 11 or newer
-- Maven-compatible environment
+- JDK 23, matching the current Maven compiler configuration
+- Maven-compatible development environment
 - Computer connected to the DJI Tello Wi-Fi network
 
-## Running
+## Running locally
+
+Compile the project with Maven:
 
 ```bash
 mvn compile
-mvn exec:java
 ```
 
-The exact execution command may vary depending on the local Maven configuration. The machine running the application must be connected to the drone network.
+Then run `src/main/java/Main.java` from a Java IDE or configure your preferred Maven/Java runner for the `Main` class.
+
+The machine running the application must be connected to the drone network.
 
 ## What this project demonstrates
 
